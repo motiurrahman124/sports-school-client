@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Button from "./Button";
 
 const Header = () => {
   const navOptions = (
@@ -49,7 +50,7 @@ const Header = () => {
   );
 
   return (
-    <div className=" fixed-top  w-full bg-primary text-white">
+    <div className="sticky top-0 w-full bg-primary text-white z-10 shadow-lg">
       <div className="max-w-screen-xl mx-auto flex justify-between items-center h-20 lg:px-0 px-4">
         <div className="navbar-start">
           <div className="dropdown">
@@ -76,8 +77,18 @@ const Header = () => {
               {navOptions}
             </ul>
           </div>
-          <a className="md:text-3xl font-bold md:block hidden">
-            <span className="text-secondary font-oswald">Sports</span> School
+          <a className="md:text-3xl font-bold md:block hidden uppercase">
+            <div className="h-12 flex items-center mb-4">
+              <img
+                src="https://i.ibb.co/r6t5b3R/images-removebg-preview-1.png"
+                alt=""
+                className="h-full"
+              />
+              <p>
+                <span className="text-secondary font-oswald ">Sports</span>{" "}
+                School
+              </p>
+            </div>
           </a>
         </div>
         <div className="hidden lg:flex">
@@ -86,8 +97,8 @@ const Header = () => {
           </ul>
         </div>
         <div className="">
-          <Link className="btn bg-secondary border-secondary hover:bg-white hover:text-primary text-white font-medium text-lg capitalize">
-            Login/Register
+          <Link to="/login">
+            <Button text={"Login / Register"}></Button>
           </Link>
         </div>
       </div>

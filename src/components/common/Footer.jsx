@@ -12,24 +12,24 @@ const Footer = () => {
           <div className="lg:w-4/12">
             <div className="flex items-center">
               <img
-                src="https://i.ibb.co/gjPJG5f/images-removebg-preview.png"
+                src="https://i.ibb.co/r6t5b3R/images-removebg-preview-1.png"
                 alt=""
-                className="w-28 h-18"
+                className="h-20"
               />
-              <a className="text-2xl font-bold font-oswald">
+              <a className="text-2xl font-bold font-oswald uppercase">
                 <span className="text-secondary">Sports</span>{" "}
                 <span className="text-white">School</span>
               </a>
             </div>
-            <p className="text-white">
+            <p className="text-white mt-4">
               Elegant pink origami design threedimensional view and decoration
               co-exist.Great for adding a decorative touch toany room decor.
             </p>
-            <div className="flex gap-x-8 text-2xl text-white mt-5">
-              <BsFacebook className="hover:text-secondary cursor-pointer" />
-              <BsTwitter className="hover:text-secondary cursor-pointer" />
-              <BsInstagram className="hover:text-secondary cursor-pointer" />
-              <BsWhatsapp className="hover:text-secondary cursor-pointer" />
+            <div className="flex gap-x-8 text-2xl text-secondary mt-5">
+              <BsFacebook className="hover:text-white cursor-pointer" />
+              <BsTwitter className="hover:text-white cursor-pointer" />
+              <BsInstagram className="hover:text-white cursor-pointer" />
+              <BsWhatsapp className="hover:text-white cursor-pointer" />
             </div>
           </div>
           <div className="">

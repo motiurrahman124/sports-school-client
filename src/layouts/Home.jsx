@@ -6,9 +6,7 @@ const HomeLayout = () => {
     return (
       <div>
         <Header></Header>
-        <div className="max-w-screen-xl mx-auto">
           <Outlet></Outlet>
-        </div>
         <Footer></Footer>
       </div>
     );
