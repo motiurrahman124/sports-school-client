@@ -117,8 +117,12 @@ const Header = () => {
           {user ? (
             <div className="">
               <img
-                src={user?.photoURL}
-                className="w-[50px] rounded-full ring ring-secondary ring-offset-base-100 ring-offset-2"
+                src={
+                  user?.photoURL
+                    ? user?.photoURL
+                    : "https://i.ibb.co/bWMQVhF/no-image.png"
+                }
+                className="w-[50px] h-[50px] rounded-full ring ring-secondary ring-offset-base-100 ring-offset-2"
                 title={user?.displayName}
               />
             </div>

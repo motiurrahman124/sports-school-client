@@ -1,8 +1,9 @@
 import { useForm } from "react-hook-form";
 import LoginRegistration from "../components/LoginRegistration/LoginRegistration";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { AuthContext } from "../providers/AuthProvider";
 
 const Login = () => {
   const {
@@ -11,7 +12,29 @@ const Login = () => {
     handleSubmit,
   } = useForm();
   const [show, setShow] = useState(false);
-  const onSubmit = (data) => console.log(data);
+  const { signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  
+
+  const onSubmit = (data) => {
+    signIn(data.email, data.password).then((result) => {
+      const user = result.user;
+      console.log(user);
+      // Swal.fire({
+      //     title: 'User Login Successful.',
+      //     showClass: {
+      //         popup: 'animate__animated animate__fadeInDown'
+      //     },
+      //     hideClass: {
+      //         popup: 'animate__animated animate__fadeOutUp'
+      //     }
+      // });
+      navigate(from, { replace: true });
+    });
+    };
+
 
   return (
     <LoginRegistration title={"Login Here"}>

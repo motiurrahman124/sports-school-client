@@ -1,18 +1,56 @@
 import { useForm } from "react-hook-form";
 import LoginRegistration from "../components/LoginRegistration/LoginRegistration";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { AuthContext } from "../providers/AuthProvider";
 
 const Register = () => {
-  const [show, setShow] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const {
     register,
     formState: { errors },
     handleSubmit,
     watch,
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  // const navigate = useNavigate();
+
+  const onSubmit = (data) => {
+    createUser(data.email, data.password).then((result) => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
+
+      updateUserProfile(data.name, data.photo)
+        .then(() => {
+          // const saveUser = { name: data.name, email: data.email };
+          // fetch("http://localhost:5000/users", {
+          //   method: "POST",
+          //   headers: {
+          //     "content-type": "application/json",
+          //   },
+          //   body: JSON.stringify(saveUser),
+          // })
+          //   .then((res) => res.json())
+          //   .then((data) => {
+          //     if (data.insertedId) {
+          //       reset();
+          //       Swal.fire({
+          //         position: "top-end",
+          //         icon: "success",
+          //         title: "User created successfully.",
+          //         showConfirmButton: false,
+          //         timer: 1500,
+          //       });
+          //       navigate("/");
+          //     }
+          //   });
+          console.log("success");
+        })
+        .catch((error) => console.log(error));
+    });
+  };
 
   return (
     <LoginRegistration title={"Registration Here"}>
@@ -57,7 +95,7 @@ const Register = () => {
             className="py-3 px-3 w-full box-border rounded-lg"
             name="password"
             placeholder="Enter password"
-            type={show ? "text" : "password"}
+            type={showPassword ? "text" : "password"}
             {...register("password", {
               required: true,
               minLength: 6,
@@ -67,9 +105,9 @@ const Register = () => {
           <span
             className="absolute right-4 top-4 text-lg"
             role="button"
-            onClick={() => setShow(!show)}
+            onClick={() => setShowPassword(!showPassword)}
           >
-            {show ? <FaEye /> : <FaEyeSlash />}
+            {showPassword ? <FaEye /> : <FaEyeSlash />}
           </span>
         </div>
         {errors?.password?.type === "required" && (
@@ -95,7 +133,7 @@ const Register = () => {
             className="py-3 px-3 w-full box-border rounded-lg"
             name="confirm_password"
             placeholder="Enter confirm password"
-            type={show ? "text" : "password"}
+            type={showConfirmPassword ? "text" : "password"}
             {...register("confirm_password", {
               required: true,
               validate: (value) =>
@@ -106,9 +144,9 @@ const Register = () => {
           <span
             className="absolute right-4 top-4 text-lg"
             role="button"
-            onClick={() => setShow(!show)}
+            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
           >
-            {show ? <FaEye /> : <FaEyeSlash />}
+            {showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
           </span>
         </div>
         {errors?.confirm_password?.type === "required" && (
