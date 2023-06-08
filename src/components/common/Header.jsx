@@ -1,7 +1,17 @@
 import { Link } from "react-router-dom";
 import Button from "./Button";
+import { AuthContext } from "../../providers/AuthProvider";
+import { useContext } from "react";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
+
   const navOptions = (
     <>
       <li className="hover:text-secondary hover:border-b hover:border-secondary">
@@ -13,9 +23,16 @@ const Header = () => {
       <li className="hover:text-secondary hover:border-b hover:border-secondary">
         <Link to="/classes">Classes</Link>
       </li>
-      <li className="hover:text-secondary hover:border-b hover:border-secondary">
-        <Link to="/dashboard">Dashboard</Link>
-      </li>
+      {user && (
+        <li className="hover:text-secondary hover:border-b hover:border-secondary">
+          <Link to="/dashboard">Dashboard</Link>
+        </li>
+      )}
+      {user && (
+        <li className="hover:text-secondary text-red-500 hover:border-b hover:border-secondary cursor-pointer">
+          <span onClick={handleLogOut}>Logout</span>
+        </li>
+      )}
       {/* {isAdmin ? (
           <li>
             <Link to="/dashboard/adminhome">Dashboard</Link>
@@ -92,14 +109,24 @@ const Header = () => {
           </a>
         </div>
         <div className="hidden lg:flex">
-          <ul className="flex gap-x-5 px-1 uppercase font-semibold font-oswald text-base">
+          <ul className="flex gap-x-5 px-1 uppercase font-medium font-oswald text-base">
             {navOptions}
           </ul>
         </div>
         <div className="">
-          <Link to="/login">
-            <Button text={"Login / Register"}></Button>
-          </Link>
+          {user ? (
+            <div className="">
+              <img
+                src={user?.photoURL}
+                className="w-[50px] rounded-full ring ring-secondary ring-offset-base-100 ring-offset-2"
+                title={user?.displayName}
+              />
+            </div>
+          ) : (
+            <Link to="/login">
+              <Button text={"Login / Register"}></Button>
+            </Link>
+          )}
         </div>
       </div>
     </div>
