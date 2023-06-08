@@ -1,34 +1,41 @@
 import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../providers/AuthProvider";
-// import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
+import Swal from "sweetalert2";
 
 const LoginRegistration = ({ children, title }) => {
   const { googleSignIn } = useContext(AuthContext);
-  // const navigate = useNavigate();
-  // const location = useLocation();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  // const from = location.state?.from?.pathname || "/";
+  const from = location.state?.from?.pathname || "/";
 
   const handleGoogleSignIn = () => {
     googleSignIn().then((result) => {
       const loggedInUser = result.user;
       console.log(loggedInUser);
-      // const saveUser = {
-      //   name: loggedInUser.displayName,
-      //   email: loggedInUser.email,
-      // };
-      // fetch("http://localhost:5000/users", {
-      //   method: "POST",
-      //   headers: {
-      //     "content-type": "application/json",
-      //   },
-      //   body: JSON.stringify(saveUser),
-      // })
-      //   .then((res) => res.json())
-      //   .then(() => {
-      //     navigate(from, { replace: true });
-      //   });
+      const saveUser = {
+        name: loggedInUser.displayName,
+        email: loggedInUser.email,
+      };
+      fetch("http://localhost:5000/users", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(saveUser),
+      })
+        .then((res) => res.json())
+        .then(() => {
+          Swal.fire({
+            title: "Success!",
+            text: "You have successfully signed in",
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
+          navigate(from, { replace: true });
+        });
     });
   };
   return (

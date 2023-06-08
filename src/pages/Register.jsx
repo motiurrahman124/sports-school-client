@@ -1,9 +1,10 @@
 import { useForm } from "react-hook-form";
 import LoginRegistration from "../components/LoginRegistration/LoginRegistration";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -13,9 +14,10 @@ const Register = () => {
     formState: { errors },
     handleSubmit,
     watch,
+    reset
   } = useForm();
   const { createUser, updateUserProfile } = useContext(AuthContext);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
     createUser(data.email, data.password).then((result) => {
@@ -24,28 +26,28 @@ const Register = () => {
 
       updateUserProfile(data.name, data.photo)
         .then(() => {
-          // const saveUser = { name: data.name, email: data.email };
-          // fetch("http://localhost:5000/users", {
-          //   method: "POST",
-          //   headers: {
-          //     "content-type": "application/json",
-          //   },
-          //   body: JSON.stringify(saveUser),
-          // })
-          //   .then((res) => res.json())
-          //   .then((data) => {
-          //     if (data.insertedId) {
-          //       reset();
-          //       Swal.fire({
-          //         position: "top-end",
-          //         icon: "success",
-          //         title: "User created successfully.",
-          //         showConfirmButton: false,
-          //         timer: 1500,
-          //       });
-          //       navigate("/");
-          //     }
-          //   });
+          const saveUser = { name: data.name, email: data.email };
+          fetch("http://localhost:5000/users", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(saveUser),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.insertedId) {
+                reset();
+                Swal.fire({
+                  title: "Success!",
+                  text: "You have successfully signed up",
+                  icon: "success",
+                  confirmButtonText: "Cool",
+                });
+                navigate("/");
+                window.location.reload();
+              }
+            });
           console.log("success");
         })
         .catch((error) => console.log(error));
