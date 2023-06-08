@@ -1,7 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
+import Button from "../../components/common/Button";
 
 const AllUser = () => {
-  const { data: users = [], refetch } = useQuery(["users"], async () => {
+  const { data: users = [] } = useQuery(["users"], async () => {
     const res = await fetch("http://localhost:5000/users");
     return res.json();
   });
@@ -14,8 +15,7 @@ const AllUser = () => {
               <th>#</th>
               <th>Name</th>
               <th>Email</th>
-              <th>Favorite Color</th>
-              <th></th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -24,9 +24,13 @@ const AllUser = () => {
                 <th>{index + 1}</th>
                 <td>{user?.name}</td>
                 <td>{user?.email}</td>
-                <td>Purple</td>
-                <th>
-                  <button className="btn btn-ghost btn-xs">details</button>
+                <th className="flex gap-x-2">
+                  <button className="bg-primary px-3 py-2 text-white rounded-lg hover:text-secondary">
+                    Make Instructor
+                  </button>
+                  <button className="bg-primary px-3 py-2 text-white rounded-lg hover:text-secondary">
+                    Make Admin
+                  </button>
                 </th>
               </tr>
             ))}
