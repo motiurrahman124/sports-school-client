@@ -25,7 +25,7 @@ const Header = () => {
       </li>
       {user && (
         <li className="hover:text-secondary hover:border-b hover:border-secondary">
-          <Link to="/dashboard">Dashboard</Link>
+          <Link to="/dashboard/userhome">Dashboard</Link>
         </li>
       )}
       {user && (

@@ -2,6 +2,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
 import { SiGoogleclassroom } from "react-icons/si";
 import { FaHome, FaUsers, FaCalendarAlt, FaBookReader } from "react-icons/fa";
+import useAdmin from "../hooks/useAdmin";
 // import useCart from "../hooks/useCart";
 // import useAdmin from "../hooks/useAdmin";
 
@@ -9,8 +10,9 @@ const DashboardLayout = () => {
   // const [cart] = useCart();
 
   // TODO: load data from the server to have dynamic isAdmin based on Data
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
   const isInstructor = false;
+  const isStudent = false;
   // const [isAdmin] = useAdmin();
 
   return (
