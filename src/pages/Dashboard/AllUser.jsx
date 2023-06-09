@@ -1,11 +1,49 @@
 import { useQuery } from "@tanstack/react-query";
-import Button from "../../components/common/Button";
+import Swal from "sweetalert2";
 
 const AllUser = () => {
-  const { data: users = [] } = useQuery(["users"], async () => {
+  const { data: users = [], refetch } = useQuery(["users"], async () => {
     const res = await fetch("http://localhost:5000/users");
     return res.json();
   });
+
+  const handleMakeAdmin = (user) => {
+    fetch(`http://localhost:5000/users/admin/${user._id}`, {
+      method: "PATCH",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount) {
+          refetch();
+          Swal.fire({
+            title: "Success!",
+            text: `${user.name} is an Admin Now!`,
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
+        }
+      });
+  };
+
+  const handleMakeInstructor = (user) => {
+    fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+      method: "PATCH",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount) {
+          refetch();
+          Swal.fire({
+            title: "Success!",
+            text: `${user.name} is an Instructor Now!`,
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
+        }
+      });
+  };
+
   return (
     <div>
       <div className="overflow-x-auto shadow-lg rounded-lg">
@@ -15,6 +53,7 @@ const AllUser = () => {
               <th>#</th>
               <th>Name</th>
               <th>Email</th>
+              <th>Role</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -24,11 +63,25 @@ const AllUser = () => {
                 <th>{index + 1}</th>
                 <td>{user?.name}</td>
                 <td>{user?.email}</td>
+                <td>{user?.role ? user?.role : "user"}</td>
                 <th className="flex gap-x-2">
-                  <button className="bg-primary px-3 py-2 text-white rounded-lg hover:text-secondary">
+                  <button
+                    onClick={() => handleMakeInstructor(user)}
+                    disabled={user?.role === "instructor"}
+                    className={`bg-primary px-3 py-2 text-white rounded-lg hover:text-secondary ${
+                      user?.role === "instructor" &&
+                      "bg-gray-300 hover:text-white"
+                    }`}
+                  >
                     Make Instructor
                   </button>
-                  <button className="bg-primary px-3 py-2 text-white rounded-lg hover:text-secondary">
+                  <button
+                    onClick={() => handleMakeAdmin(user)}
+                    disabled={user?.role === "admin"}
+                    className={`bg-primary px-3 py-2 text-white rounded-lg hover:text-secondary ${
+                      user?.role === "admin" && "bg-gray-300 hover:text-white"
+                    }`}
+                  >
                     Make Admin
                   </button>
                 </th>
