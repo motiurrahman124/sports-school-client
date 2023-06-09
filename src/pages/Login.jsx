@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const {
@@ -11,33 +12,43 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const [error, setError] = useState("");
   const [show, setShow] = useState(false);
   const { signIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  
 
   const onSubmit = (data) => {
-    signIn(data.email, data.password).then((result) => {
-      const user = result.user;
-      console.log(user);
-      // Swal.fire({
-      //     title: 'User Login Successful.',
-      //     showClass: {
-      //         popup: 'animate__animated animate__fadeInDown'
-      //     },
-      //     hideClass: {
-      //         popup: 'animate__animated animate__fadeOutUp'
-      //     }
-      // });
-      navigate(from, { replace: true });
-    });
-    };
-
+    signIn(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        Swal.fire({
+          title: "Success!",
+          text: "You have successfully signed in",
+          icon: "success",
+          confirmButtonText: "Cool",
+        });
+        navigate(from, { replace: true });
+      })
+      .catch(() => {
+        Swal.fire({
+          title: "Error!",
+          text: "Your have entered wrong credentials!",
+          icon: "error",
+          confirmButtonText: "Try Again",
+        });
+      });
+  };
 
   return (
     <LoginRegistration title={"Login Here"}>
+      {error?.length > 2 && (
+        <p className="my-5 bg-red-50 text-center py-4 rounded-lg text-red-500">
+          {error}
+        </p>
+      )}
       <form onSubmit={handleSubmit(onSubmit)}>
         <label className="block mb-2 text-white text-base font-medium">
           Email <span className="text-red-600">*</span>

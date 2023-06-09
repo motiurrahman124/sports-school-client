@@ -55,7 +55,14 @@ const Register = () => {
             });
           console.log("success");
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          Swal.fire({
+            title: "Error!",
+            text: "Something went wrong!",
+            icon: "error",
+            confirmButtonText: "Try Again",
+          });
+        });
     });
   };
 
