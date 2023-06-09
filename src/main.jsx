@@ -12,6 +12,9 @@ import UserHome from "./pages/Dashboard/UserHome";
 import DashboardLayout from "./layouts/Dashboard";
 import AllUser from "./pages/Dashboard/AllUser";
 import AdminRoute from "./Routes/AdminRoute";
+import PrivateRoute from "./Routes/PrivateRoute";
+import InstructorHome from "./pages/Dashboard/InstructorHome";
+import AdminHome from "./pages/Dashboard/AdminHome";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -38,8 +41,28 @@ const router = createBrowserRouter([
     element: <DashboardLayout></DashboardLayout>,
     children: [
       {
-        path: "userhome",
-        element: <UserHome></UserHome>,
+        path: "student-home",
+        element: (
+          <PrivateRoute>
+            <UserHome></UserHome>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "instructor-home",
+        element: (
+          <PrivateRoute>
+            <InstructorHome></InstructorHome>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "admin-home",
+        element: (
+          <PrivateRoute>
+            <AdminHome></AdminHome>
+          </PrivateRoute>
+        ),
       },
       {
         path: "manage-users",

@@ -33,7 +33,7 @@ const DashboardLayout = () => {
           {isAdmin && (
             <>
               <li>
-                <NavLink to="/dashboard/adminhome">
+                <NavLink to="/dashboard/admin-home">
                   <FaHome></FaHome> Admin Home
                 </NavLink>
               </li>
@@ -54,7 +54,7 @@ const DashboardLayout = () => {
           {isInstructor && (
             <>
               <li>
-                <NavLink to="/dashboard/instructorhome">
+                <NavLink to="/dashboard/instructor-home">
                   <FaHome></FaHome> Instructor Home
                 </NavLink>
               </li>
@@ -75,7 +75,7 @@ const DashboardLayout = () => {
           {isStudent && (
             <>
               <li>
-                <NavLink to="/dashboard/userhome">
+                <NavLink to="/dashboard/student-home">
                   <FaHome></FaHome> User Home
                 </NavLink>
               </li>

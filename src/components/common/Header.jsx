@@ -2,9 +2,15 @@ import { Link } from "react-router-dom";
 import Button from "./Button";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useContext } from "react";
+import useAdmin from "../../hooks/useAdmin";
+import useInstructor from "../../hooks/useInstructor";
+import useStudent from "../../hooks/useStudent";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructor();
+  const [isStudent] = useStudent();
 
   const handleLogOut = () => {
     logOut()
@@ -23,9 +29,19 @@ const Header = () => {
       <li className="hover:text-secondary hover:border-b hover:border-secondary">
         <Link to="/classes">Classes</Link>
       </li>
-      {user && (
+      {user && isAdmin && (
         <li className="hover:text-secondary hover:border-b hover:border-secondary">
-          <Link to="/dashboard/userhome">Dashboard</Link>
+          <Link to="/dashboard/admin-home">Dashboard</Link>
+        </li>
+      )}
+      {user && isInstructor && (
+        <li className="hover:text-secondary hover:border-b hover:border-secondary">
+          <Link to="/dashboard/instructor-home">Dashboard</Link>
+        </li>
+      )}
+      {user && isStudent && (
+        <li className="hover:text-secondary hover:border-b hover:border-secondary">
+          <Link to="/dashboard/student-home">Dashboard</Link>
         </li>
       )}
       {user && (
