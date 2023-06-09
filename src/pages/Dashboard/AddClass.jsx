@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const img_hosting_token = import.meta.env.VITE_Image_Upload_token;
 
@@ -42,21 +43,19 @@ const AddClass = () => {
             seats: parseInt(seats),
             price: parseFloat(price),
             image: imgURL,
+            status: "pending"
           };
-          console.log(newClass);
-          //   axiosSecure.post("/menu", newClass).then((data) => {
-          //     console.log("after posting new menu item", data.data);
-          //     if (data.data.insertedId) {
-          //       reset();
-          //       Swal.fire({
-          //         position: "top-end",
-          //         icon: "success",
-          //         title: "Item added successfully",
-          //         showConfirmButton: false,
-          //         timer: 1500,
-          //       });
-          //     }
-          //   });
+            axiosSecure.post("/class", newClass).then((data) => {
+              if (data.data.insertedId) {
+                reset();
+                Swal.fire({
+                  title: "Success!",
+                  text: "Successfully added a new class!",
+                  icon: "success",
+                  confirmButtonText: "Cool",
+                });
+              }
+            });
         }
       });
   };

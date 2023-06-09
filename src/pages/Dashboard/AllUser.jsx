@@ -68,7 +68,11 @@ const AllUser = () => {
                   <div className="avatar">
                     <div className="mask mask-squircle w-12 h-12">
                       <img
-                        src={user?.image}
+                        src={
+                          user?.image
+                            ? user?.image
+                            : "https://i.ibb.co/bWMQVhF/no-image.png"
+                        }
                         alt="image"
                       />
                     </div>

@@ -66,7 +66,7 @@ const DashboardLayout = () => {
               </li>
 
               <li>
-                <NavLink to="/dashboard/allusers">
+                <NavLink to="/dashboard/instructor/my-class">
                   <SiGoogleclassroom /> My Classes
                 </NavLink>
               </li>
