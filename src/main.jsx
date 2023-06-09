@@ -15,6 +15,7 @@ import AdminRoute from "./Routes/AdminRoute";
 import PrivateRoute from "./Routes/PrivateRoute";
 import InstructorHome from "./pages/Dashboard/InstructorHome";
 import AdminHome from "./pages/Dashboard/AdminHome";
+import AddClass from "./pages/Dashboard/AddClass";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -53,6 +54,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <InstructorHome></InstructorHome>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "add-class",
+        element: (
+          <PrivateRoute>
+            <AddClass></AddClass>
           </PrivateRoute>
         ),
       },

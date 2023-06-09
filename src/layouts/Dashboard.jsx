@@ -59,7 +59,7 @@ const DashboardLayout = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/manageClasses">
+                <NavLink to="/dashboard/add-class">
                   {" "}
                   <FaBookReader /> Add Class
                 </NavLink>
