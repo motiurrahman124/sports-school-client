@@ -11,6 +11,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import UserHome from "./pages/Dashboard/UserHome";
 import DashboardLayout from "./layouts/Dashboard";
 import AllUser from "./pages/Dashboard/AllUser";
+import AdminRoute from "./Routes/AdminRoute";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -42,7 +43,11 @@ const router = createBrowserRouter([
       },
       {
         path: "manage-users",
-        element: <AllUser></AllUser>,
+        element: (
+          <AdminRoute>
+            <AllUser></AllUser>
+          </AdminRoute>
+        ),
       },
     ],
   },
