@@ -99,7 +99,7 @@ const AllUser = () => {
                     disabled={user?.role === "instructor"}
                     className={`bg-primary px-3 py-2 text-white rounded-lg hover:text-secondary ${
                       user?.role === "instructor" &&
-                      "bg-gray-300 hover:text-white"
+                      "!bg-gray-300 hover:text-white"
                     }`}
                   >
                     Make Instructor
@@ -108,7 +108,7 @@ const AllUser = () => {
                     onClick={() => handleMakeAdmin(user)}
                     disabled={user?.role === "admin"}
                     className={`bg-primary px-3 py-2 text-white rounded-lg hover:text-secondary ${
-                      user?.role === "admin" && "bg-gray-300 hover:text-white"
+                      user?.role === "admin" && "!bg-gray-300 hover:text-white"
                     }`}
                   >
                     Make Admin

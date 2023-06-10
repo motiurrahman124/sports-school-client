@@ -1,10 +1,18 @@
 import { Link } from "react-router-dom";
 import useInstructorClass from "../../../hooks/useInstructorClass";
+import { useState } from "react";
+import { Modal } from "antd";
 
 const MyClass = () => {
   const [myClass] = useInstructorClass();
-  console.log("🚀 ~ file: MyClass.jsx:6 ~ MyClass ~ class:", myClass);
-
+  const [openFeedback, setOpenFeedback] = useState(false);
+  const [feedback, setFeedback] = useState("");
+  const showFeedbackModal = () => {
+    setOpenFeedback(true);
+  };
+  const handleCancelFeedback = () => {
+    setOpenFeedback(false);
+  };
   return (
     <div>
       <div className="text-sm breadcrumbs">
@@ -55,10 +63,21 @@ const MyClass = () => {
                 <td>${c?.price}</td>
                 <td>{c?.seats}</td>
                 <td>{c?.enrolled ? c?.enrolled : 0}</td>
-                <td>{c?.status}</td>
+                <td
+                  className={`${c?.status === "pending" && "text-secondary"} ${
+                    c?.status === "approved" && "text-green-600"
+                  } ${c?.status === "denied" && "text-red-600"} capitalize`}
+                >
+                  {c?.status}
+                </td>
                 <td>
                   {c?.status === "denied" ? (
-                    <span className="text-primary hover:underline cursor-pointer font-medium">
+                    <span
+                      onClick={() => {
+                        showFeedbackModal(), setFeedback(c?.feedback);
+                      }}
+                      className="cursor-pointer text-primary underline hover:text-secondary"
+                    >
                       view feedback
                     </span>
                   ) : (
@@ -77,6 +96,16 @@ const MyClass = () => {
           </tbody>
         </table>
       </div>
+      <Modal
+        title="Feedback"
+        open={openFeedback}
+        onCancel={handleCancelFeedback}
+        footer={null}
+      >
+        <div>
+          <p>{feedback? feedback:"No feedback was given yet"}</p>
+        </div>
+      </Modal>
     </div>
   );
 };

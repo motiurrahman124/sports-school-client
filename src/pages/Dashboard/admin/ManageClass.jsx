@@ -165,7 +165,7 @@ const ManageClass = () => {
                     onClick={() => handleMakeApprove(c)}
                     className={`bg-green-600 px-3 py-2 text-white rounded-lg hover:text-green-600 hover:bg-white border border-green-600 ${
                       (c?.status === "approved" || c?.status === "denied") &&
-                      "!bg-gray-200 border-gray-200 hover:text-white"
+                      "!bg-gray-300 border-gray-300 hover:text-white"
                     }`}
                     disabled={
                       c?.status === "denied" || c?.status === "approved"
@@ -177,7 +177,7 @@ const ManageClass = () => {
                     onClick={() => handleMakeDeny(c)}
                     className={`bg-red-600 px-3 py-2 text-white rounded-lg hover:text-red-600 border border-red-600 hover:bg-white ${
                       (c?.status === "approved" || c?.status === "denied") &&
-                      "!bg-gray-200 border-gray-200 hover:text-white"
+                      "!bg-gray-300 border-gray-300 hover:text-white"
                     }`}
                     disabled={
                       c?.status === "denied" || c?.status === "approved"
@@ -201,7 +201,7 @@ const ManageClass = () => {
                       }}
                       className={`bg-primary px-3 py-2 text-white rounded-lg hover:text-primary border border-primary hover:bg-white ${
                         (c?.status === "approved" || c?.status === "pending") &&
-                        "!bg-gray-200 border-gray-200 hover:text-white"
+                        "!bg-gray-300 border-gray-300 hover:text-white"
                       }`}
                       disabled={
                         c?.status === "pending" || c?.status === "approved"
