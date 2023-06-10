@@ -55,7 +55,7 @@ const Register = () => {
             });
           console.log("success");
         })
-        .catch((error) => {
+        .catch(() => {
           Swal.fire({
             title: "Error!",
             text: "Something went wrong!",

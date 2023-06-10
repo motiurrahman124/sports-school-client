@@ -1,15 +1,24 @@
-import { NavLink, Outlet } from "react-router-dom";
-import { AiOutlineMenuUnfold } from "react-icons/ai";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { AiOutlineLogout, AiOutlineMenuUnfold } from "react-icons/ai";
 import { SiGoogleclassroom } from "react-icons/si";
 import { FaHome, FaUsers, FaCalendarAlt, FaBookReader } from "react-icons/fa";
 import useAdmin from "../hooks/useAdmin";
 import useInstructor from "../hooks/useInstructor";
 import useStudent from "../hooks/useStudent";
+import { useContext } from "react";
+import { AuthContext } from "../providers/AuthProvider";
 
 const DashboardLayout = () => {
+  const { logOut } = useContext(AuthContext);
   const [isAdmin] = useAdmin();
   const [isInstructor] = useInstructor();
   const [isStudent] = useStudent();
+  const navigate = useNavigate();
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {navigate("/login");})
+      .catch((error) => console.log(error));
+  };
 
   return (
     <div className="drawer lg:drawer-open">
@@ -91,6 +100,11 @@ const DashboardLayout = () => {
               </li>
             </>
           )}
+          <li>
+            <button onClick={handleLogOut}>
+              <AiOutlineLogout></AiOutlineLogout> Logout
+            </button>
+          </li>
         </ul>
       </div>
     </div>

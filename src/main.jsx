@@ -19,6 +19,7 @@ import AddClass from "./pages/Dashboard/AddClass";
 import MyClass from "./pages/Dashboard/instructor/MyClass";
 import InstructorRoute from "./Routes/InstructorRoute";
 import ManageClass from "./pages/Dashboard/admin/ManageClass";
+import Classes from "./pages/Classes";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login />,
+      },
+      {
+        path: "/classes",
+        element: <Classes />,
       },
       {
         path: "register",
