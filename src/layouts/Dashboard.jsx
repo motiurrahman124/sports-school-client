@@ -38,7 +38,7 @@ const DashboardLayout = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/manageClasses">
+                <NavLink to="/dashboard/manage-class">
                   {" "}
                   <SiGoogleclassroom /> Manage Classes
                 </NavLink>

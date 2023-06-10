@@ -17,6 +17,8 @@ import InstructorHome from "./pages/Dashboard/InstructorHome";
 import AdminHome from "./pages/Dashboard/AdminHome";
 import AddClass from "./pages/Dashboard/AddClass";
 import MyClass from "./pages/Dashboard/instructor/MyClass";
+import InstructorRoute from "./Routes/InstructorRoute";
+import ManageClass from "./pages/Dashboard/admin/ManageClass";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -62,7 +64,9 @@ const router = createBrowserRouter([
         path: "add-class",
         element: (
           <PrivateRoute>
-            <AddClass></AddClass>
+            <InstructorRoute>
+              <AddClass></AddClass>
+            </InstructorRoute>
           </PrivateRoute>
         ),
       },
@@ -70,7 +74,9 @@ const router = createBrowserRouter([
         path: "instructor/my-class",
         element: (
           <PrivateRoute>
-            <MyClass></MyClass>
+            <InstructorRoute>
+              <MyClass></MyClass>
+            </InstructorRoute>
           </PrivateRoute>
         ),
       },
@@ -78,16 +84,30 @@ const router = createBrowserRouter([
         path: "admin-home",
         element: (
           <PrivateRoute>
-            <AdminHome></AdminHome>
+            <AdminRoute>
+              <AdminHome></AdminHome>
+            </AdminRoute>
           </PrivateRoute>
         ),
       },
       {
         path: "manage-users",
         element: (
-          <AdminRoute>
-            <AllUser></AllUser>
-          </AdminRoute>
+          <PrivateRoute>
+            <AdminRoute>
+              <AllUser></AllUser>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "manage-class",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ManageClass></ManageClass>
+            </AdminRoute>
+          </PrivateRoute>
         ),
       },
     ],
