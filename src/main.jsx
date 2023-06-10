@@ -21,6 +21,7 @@ import InstructorRoute from "./Routes/InstructorRoute";
 import ManageClass from "./pages/Dashboard/admin/ManageClass";
 import Classes from "./pages/Classes";
 import Instructors from "./pages/Instructors";
+import PageNotFound from "./pages/PageNotFound";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -121,6 +122,10 @@ const router = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: "*",
+    element: <PageNotFound></PageNotFound>,
   },
 ]);
 
