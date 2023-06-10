@@ -3,8 +3,11 @@ import PageTitle from "../components/common/PageTitle";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import useAdmin from "../hooks/useAdmin";
 import useInstructor from "../hooks/useInstructor";
+import useAuth from "../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Classes = () => {
+    const {user} = useAuth();
   const [isAdmin] = useAdmin();
   const [isInstructor] = useInstructor();
   const [axiosSecure] = useAxiosSecure();
@@ -12,6 +15,17 @@ const Classes = () => {
     const res = await axiosSecure.get("/class");
     return res.data;
   });
+
+  const handleSelectClass = () =>{
+    if(!user){
+        Swal.fire({
+          title: "Warning!",
+          text: "Login first to select this class!",
+          icon: "warning",
+          confirmButtonText: "Ok",
+        });
+    }
+  }
   return (
     <div>
       <PageTitle title={"Our Classes"}></PageTitle>
@@ -54,6 +68,7 @@ const Classes = () => {
               </div>
               <div className="mt-4">
                 <button
+                onClick={()=>handleSelectClass(c?._id)}
                   className="btn w-full bg-secondary !border-secondary hover:bg-white hover:text-primary text-white font-medium text-lg capitalize"
                   disabled={c?.seats === 0 || isAdmin || isInstructor}
                 >

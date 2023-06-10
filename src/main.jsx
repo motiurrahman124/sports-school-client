@@ -20,6 +20,7 @@ import MyClass from "./pages/Dashboard/instructor/MyClass";
 import InstructorRoute from "./Routes/InstructorRoute";
 import ManageClass from "./pages/Dashboard/admin/ManageClass";
 import Classes from "./pages/Classes";
+import Instructors from "./pages/Instructors";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "/classes",
         element: <Classes />,
+      },
+      {
+        path: "/instructors",
+        element: <Instructors />,
       },
       {
         path: "register",
