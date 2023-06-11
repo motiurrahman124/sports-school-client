@@ -89,7 +89,7 @@ const DashboardLayout = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/">
+                <NavLink to="/dashboard/selected-class">
                   <FaCalendarAlt></FaCalendarAlt> My Selected Classes
                 </NavLink>
               </li>

@@ -22,6 +22,7 @@ import ManageClass from "./pages/Dashboard/admin/ManageClass";
 import Classes from "./pages/Classes";
 import Instructors from "./pages/Instructors";
 import PageNotFound from "./pages/PageNotFound";
+import MySelectedClass from "./pages/Dashboard/student/MySelectedClass";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -64,10 +65,20 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "selected-class",
+        element: (
+          <PrivateRoute>
+            <MySelectedClass></MySelectedClass>
+          </PrivateRoute>
+        ),
+      },
+      {
         path: "instructor-home",
         element: (
           <PrivateRoute>
-            <InstructorHome></InstructorHome>
+            <InstructorRoute>
+              <InstructorHome></InstructorHome>
+            </InstructorRoute>
           </PrivateRoute>
         ),
       },
