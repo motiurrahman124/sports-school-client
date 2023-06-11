@@ -1,15 +1,8 @@
-// import { Carousel } from "antd";
-// const contentStyle = {
-//   height: "160px",
-//   color: "#fff",
-//   lineHeight: "160px",
-//   textAlign: "center",
-//   background: "#364d79",
-// };
 import { useState } from "react";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import "./styles.css";
+import MiddleCardMotion from "../../motion/middleCardMotion";
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -65,15 +58,17 @@ const Hero = () => {
         >
           <div className="!bg-[url('https://i.ibb.co/3CRTR4M/Sports-Banner.jpg')] !bg-cover keen-slider__slide number-slide1">
             <div className="bg-primary flex justify-center items-center w-full h-full bg-opacity-60">
-              <div>
-                <h1 className="lg:text-7xl md:text-4xl text-2xl text-center font-bold font-oswald text-white">
-                  Welcome To <span className="text-secondary">Sports</span>{" "}
-                  School
-                </h1>
-                <p className="md:text-xl text-base px-10 font-open_sans text-center mt-5 text-white">
-                  Join our sports training class and be healthy
-                </p>
-              </div>
+              <MiddleCardMotion>
+                <div>
+                  <h1 className="lg:text-7xl md:text-4xl text-2xl text-center font-bold font-oswald text-white">
+                    Welcome To <span className="text-secondary">Sports</span>{" "}
+                    School
+                  </h1>
+                  <p className="md:text-xl text-base px-10 font-open_sans text-center mt-5 text-white">
+                    Join our sports training class and be healthy
+                  </p>
+                </div>
+              </MiddleCardMotion>
             </div>
           </div>
           <div className="!bg-[url('https://i.ibb.co/F4RGpdD/JHPBackgrounds-Core-Horizontal-Rebooku.jpg')] !bg-cover keen-slider__slide number-slide2">

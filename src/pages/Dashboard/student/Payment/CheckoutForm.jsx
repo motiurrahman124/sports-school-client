@@ -6,6 +6,7 @@ import useAuth from "../../../../hooks/useAuth";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import useSelectClass from "../../../../hooks/useSelectClass";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutForm = ({ itemId, price }) => {
   const stripe = useStripe();
@@ -16,6 +17,7 @@ const CheckoutForm = ({ itemId, price }) => {
   const [clientSecret, setClientSecret] = useState("");
   const [processing, setProcessing] = useState(false);
   const [items] = useSelectClass();
+  const navigate = useNavigate();
 
   const classes = items?.find((item) => item?.item?._id === itemId);
   console.log("🚀 ~ file: CheckoutForm.jsx:21 ~ CheckoutForm ~ classes:", classes?._id)
@@ -77,6 +79,7 @@ const CheckoutForm = ({ itemId, price }) => {
         price,
         date: new Date(),
         class_name: classes?.item?.class_name,
+        classId: classes?.item?._id,
       };
       axiosSecure.post("/payments", payment).then((res) => {
         if (res?.data?.insertedId.length > 0) {
@@ -86,6 +89,8 @@ const CheckoutForm = ({ itemId, price }) => {
             icon: "success",
             confirmButtonText: "Enjoy Class",
           });
+          navigate('/dashboard/payment-history')
+          
         }
       });
     }

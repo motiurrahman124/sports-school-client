@@ -1,6 +1,7 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { AiOutlineLogout, AiOutlineMenuUnfold } from "react-icons/ai";
 import { SiGoogleclassroom } from "react-icons/si";
+import { MdOutlinePreview, MdPayment } from "react-icons/md";
 import { FaHome, FaUsers, FaCalendarAlt, FaBookReader } from "react-icons/fa";
 import useAdmin from "../hooks/useAdmin";
 import useInstructor from "../hooks/useInstructor";
@@ -39,8 +40,29 @@ const DashboardLayout = () => {
       </div>
       <div className="drawer-side bg-primary">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-        <ul className="menu p-4 w-80 text-base text-white dashboard">
+
+        <ul className="menu p-4 w-80 text-base text-white dashboard space-y-2 font-open_sans font-medium">
           {/* Sidebar content here */}
+          <li>
+            <div className="flex flex-col text-center mx-auto py-5">
+              <div className="flex justify-center ">
+                <img
+                  src="https://i.ibb.co/r6t5b3R/images-removebg-preview-1.png"
+                  className="h-[100px] w-[100px]"
+                  alt="logo"
+                />
+              </div>
+              <h1 className="font-oswald text-2xl md:text-3xl uppercase font-bold text-white">
+                <span className="text-secondary">Sports</span> School
+              </h1>
+              <h3 className="text-xl uppercase text-secondary font-semibold mt-2 font-oswald">
+                {isAdmin && "Admin"}
+                {isInstructor && "Instructor"}
+                {isStudent && "Student"}
+              </h3>
+            </div>
+          </li>
+
           {isAdmin && (
             <>
               <li>
@@ -96,17 +118,22 @@ const DashboardLayout = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/enrolled-class">
+                <NavLink to="/dashboard/enrolled-class">
                   <SiGoogleclassroom /> My Enrolled Classes
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/payment-history">
-                  <SiGoogleclassroom /> Payment History
+                  <MdPayment /> Payment History
                 </NavLink>
               </li>
             </>
           )}
+          <li>
+            <NavLink to="/">
+              <MdOutlinePreview></MdOutlinePreview> Live Website
+            </NavLink>
+          </li>
           <li>
             <button onClick={handleLogOut}>
               <AiOutlineLogout></AiOutlineLogout> Logout

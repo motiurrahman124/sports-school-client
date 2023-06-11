@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
-import useAuth from "../../hooks/useAuth";
+import useAuth from "../../../hooks/useAuth";
 import { Link } from "react-router-dom";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 
 const img_hosting_token = import.meta.env.VITE_Image_Upload_token;
@@ -43,19 +43,19 @@ const AddClass = () => {
             seats: parseInt(seats),
             price: parseFloat(price),
             image: imgURL,
-            status: "pending"
+            status: "pending",
           };
-            axiosSecure.post("/class", newClass).then((data) => {
-              if (data.data.insertedId) {
-                reset();
-                Swal.fire({
-                  title: "Success!",
-                  text: "Successfully added a new class!",
-                  icon: "success",
-                  confirmButtonText: "Cool",
-                });
-              }
-            });
+          axiosSecure.post("/class", newClass).then((data) => {
+            if (data.data.insertedId) {
+              reset();
+              Swal.fire({
+                title: "Success!",
+                text: "Successfully added a new class!",
+                icon: "success",
+                confirmButtonText: "Cool",
+              });
+            }
+          });
         }
       });
   };

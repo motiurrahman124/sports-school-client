@@ -7,6 +7,8 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 const MySelectedClass = () => {
   const [selectedClass, refetch] = useSelectClass();
   const [axiosSecure] = useAxiosSecure();
+
+  const selectedClasses = selectedClass?.filter((item)=> item?.payment_status === "unpaid")
   
 
   const handleDelete = (item) => {
@@ -53,12 +55,13 @@ const MySelectedClass = () => {
               <th>Class Name</th>
               <th>Instructor Name</th>
               <th>Price</th>
+              <th>Payment status</th>
               <th>Make Payment</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {selectedClass?.map((c, index) => (
+            {selectedClasses?.map((c, index) => (
               <tr key={c?._id}>
                 <th>{index + 1}</th>
                 <td>
@@ -78,6 +81,7 @@ const MySelectedClass = () => {
                 <td>{c?.item?.class_name}</td>
                 <td>{c?.item?.instructor_name}</td>
                 <td>${c?.item?.price}</td>
+                <td className="text-red-600">{c?.payment_status}</td>
 
                 <td>
                   <Link

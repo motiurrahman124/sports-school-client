@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Button from "./Button";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useContext } from "react";
@@ -44,27 +44,27 @@ const Header = () => {
   const navOptions = (
     <>
       <li className="hover:text-secondary hover:border-b hover:border-secondary">
-        <Link to="/">Home</Link>
+        <NavLink to="/">Home</NavLink>
       </li>
       <li className="hover:text-secondary hover:border-b hover:border-secondary">
-        <Link to="/instructors">Instructors</Link>
+        <NavLink to="/instructors">Instructors</NavLink>
       </li>
       <li className="hover:text-secondary hover:border-b hover:border-secondary">
-        <Link to="/classes">Classes</Link>
+        <NavLink to="/classes">Classes</NavLink>
       </li>
       {user && isAdmin && (
         <li className="hover:text-secondary hover:border-b hover:border-secondary">
-          <Link to="/dashboard/admin-home">Dashboard</Link>
+          <NavLink to="/dashboard/admin-home">Dashboard</NavLink>
         </li>
       )}
       {user && isInstructor && (
         <li className="hover:text-secondary hover:border-b hover:border-secondary">
-          <Link to="/dashboard/instructor-home">Dashboard</Link>
+          <NavLink to="/dashboard/instructor-home">Dashboard</NavLink>
         </li>
       )}
       {user && isStudent && (
         <li className="hover:text-secondary hover:border-b hover:border-secondary">
-          <Link to="/dashboard/student-home">Dashboard</Link>
+          <NavLink to="/dashboard/student-home">Dashboard</NavLink>
         </li>
       )}
       {user && (
@@ -118,7 +118,7 @@ const Header = () => {
           </a>
         </div>
         <div className="hidden lg:flex">
-          <ul className="flex gap-x-5 px-1 uppercase font-medium font-oswald text-base">
+          <ul className="flex gap-x-5 px-1 uppercase font-medium font-oswald text-base home">
             {navOptions}
           </ul>
         </div>

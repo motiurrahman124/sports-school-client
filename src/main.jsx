@@ -8,14 +8,14 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AuthProvider from "./providers/AuthProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import UserHome from "./pages/Dashboard/UserHome";
+import UserHome from "./pages/Dashboard/student/UserHome";
 import DashboardLayout from "./layouts/Dashboard";
-import AllUser from "./pages/Dashboard/AllUser";
+import AllUser from "./pages/Dashboard/admin/AllUser";
 import AdminRoute from "./Routes/AdminRoute";
 import PrivateRoute from "./Routes/PrivateRoute";
-import InstructorHome from "./pages/Dashboard/InstructorHome";
-import AdminHome from "./pages/Dashboard/AdminHome";
-import AddClass from "./pages/Dashboard/AddClass";
+import InstructorHome from "./pages/Dashboard/instructor/InstructorHome";
+import AdminHome from "./pages/Dashboard/admin/AdminHome";
+import AddClass from "./pages/Dashboard/instructor/AddClass";
 import MyClass from "./pages/Dashboard/instructor/MyClass";
 import InstructorRoute from "./Routes/InstructorRoute";
 import ManageClass from "./pages/Dashboard/admin/ManageClass";
@@ -25,6 +25,8 @@ import PageNotFound from "./pages/PageNotFound";
 import MySelectedClass from "./pages/Dashboard/student/MySelectedClass";
 import Payment from "./pages/Dashboard/student/Payment/Payment";
 import PaymentHistory from "./pages/Dashboard/student/PaymentHistory";
+import MyEnrolledClass from "./pages/Dashboard/student/MyEnrolledClass";
+import StudentRoute from "./Routes/StudentRoute";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -62,7 +64,9 @@ const router = createBrowserRouter([
         path: "student-home",
         element: (
           <PrivateRoute>
-            <UserHome></UserHome>
+            <StudentRoute>
+              <UserHome></UserHome>
+            </StudentRoute>
           </PrivateRoute>
         ),
       },
@@ -70,7 +74,9 @@ const router = createBrowserRouter([
         path: "selected-class",
         element: (
           <PrivateRoute>
-            <MySelectedClass></MySelectedClass>
+            <StudentRoute>
+              <MySelectedClass></MySelectedClass>
+            </StudentRoute>
           </PrivateRoute>
         ),
       },
@@ -78,7 +84,19 @@ const router = createBrowserRouter([
         path: "payment",
         element: (
           <PrivateRoute>
-            <Payment></Payment>
+            <StudentRoute>
+              <Payment></Payment>
+            </StudentRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "enrolled-class",
+        element: (
+          <PrivateRoute>
+            <StudentRoute>
+              <MyEnrolledClass></MyEnrolledClass>
+            </StudentRoute>
           </PrivateRoute>
         ),
       },
@@ -86,7 +104,9 @@ const router = createBrowserRouter([
         path: "payment-history",
         element: (
           <PrivateRoute>
-            <PaymentHistory></PaymentHistory>
+            <StudentRoute>
+              <PaymentHistory></PaymentHistory>
+            </StudentRoute>
           </PrivateRoute>
         ),
       },
