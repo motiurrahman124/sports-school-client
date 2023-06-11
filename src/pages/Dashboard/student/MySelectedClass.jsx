@@ -80,16 +80,17 @@ const MySelectedClass = () => {
                 <td>${c?.item?.price}</td>
 
                 <td>
-                  <button
+                  <Link
+                    to={`/dashboard/payment/?item=${c?.item?._id}&price=${c?.item?.price}`}
                     className={`bg-secondary border border-secondary hover:text-secondary p-2.5 text-white text-base font-semibold rounded-lg hover:bg-white`}
                   >
                     Pay
-                  </button>
+                  </Link>
                 </td>
 
                 <td>
                   <button
-                  onClick={() => handleDelete(c)}
+                    onClick={() => handleDelete(c)}
                     className={`bg-red-600 border border-red-600 hover:text-red-600 p-3 text-white rounded-lg hover:bg-white`}
                   >
                     <FaTrashAlt size={18} />

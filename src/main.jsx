@@ -23,6 +23,7 @@ import Classes from "./pages/Classes";
 import Instructors from "./pages/Instructors";
 import PageNotFound from "./pages/PageNotFound";
 import MySelectedClass from "./pages/Dashboard/student/MySelectedClass";
+import Payment from "./pages/Dashboard/student/Payment/Payment";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -69,6 +70,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MySelectedClass></MySelectedClass>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "payment",
+        element: (
+          <PrivateRoute>
+            <Payment></Payment>
           </PrivateRoute>
         ),
       },
