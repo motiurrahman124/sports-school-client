@@ -13,10 +13,13 @@ const Classes = () => {
   const [isInstructor] = useInstructor();
   const [selectedClass] = useSelectClass();
   const [axiosSecure] = useAxiosSecure();
-  const { data: classList = [], refetch } = useQuery(["class/approved"], async () => {
-    const res = await axiosSecure.get("/class/approved");
-    return res.data;
-  });
+  const { data: classList = [], refetch } = useQuery(
+    ["class/approved"],
+    async () => {
+      const res = await axiosSecure.get("/class/approved");
+      return res.data;
+    }
+  );
 
   const handleSelectClass = (item) => {
     if (!user) {
@@ -56,12 +59,12 @@ const Classes = () => {
   return (
     <div>
       <PageTitle title={"Our Classes"}></PageTitle>
-      <div className="bg-slate-50">
+      <div className="">
         <div className="max-w-screen-xl mx-auto py-20 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:px-0 px-5 gap-8">
           {classList?.map((c) => (
             <div
               key={c?._id}
-              className={`bg-white rounded-lg shadow-lg p-5 ${
+              className={`bg-white rounded-lg shadow-lg p-5 border ${
                 c?.seats === 0 && "!bg-red-600 text-white"
               }`}
             >
@@ -97,7 +100,12 @@ const Classes = () => {
                 <button
                   onClick={() => handleSelectClass(c)}
                   className="btn w-full bg-secondary !border-secondary hover:bg-white hover:text-primary text-white font-medium text-lg capitalize"
-                  disabled={c?.seats === 0 || isAdmin || isInstructor || selectedClass?.item?._id === c?._id}
+                  disabled={
+                    c?.seats === 0 ||
+                    isAdmin ||
+                    isInstructor ||
+                    selectedClass?.item?._id === c?._id
+                  }
                 >
                   {" "}
                   select

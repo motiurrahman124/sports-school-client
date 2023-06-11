@@ -12,12 +12,12 @@ const Instructors = () => {
   return (
     <div>
       <PageTitle title={"Our Instructors"}></PageTitle>
-      <div className="bg-slate-50">
+      <div className="">
         <div className="max-w-screen-xl mx-auto py-20 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:px-0 px-5 gap-8">
           {instructors?.map((c) => (
             <div
               key={c?._id}
-              className={`bg-white rounded-lg shadow-lg p-5 ${
+              className={`bg-white rounded-lg shadow-lg p-5 border ${
                 c?.seats === 0 && "!bg-red-600 text-white"
               }`}
             >

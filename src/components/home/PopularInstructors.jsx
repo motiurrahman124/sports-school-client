@@ -3,13 +3,16 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const PopularInstructors = () => {
   const [axiosSecure] = useAxiosSecure();
-  const { data: instructors = [] } = useQuery(["instructors"], async () => {
-    const res = await axiosSecure.get("/instructors");
-    return res.data;
-  });
+  const { data: instructors = [] } = useQuery(
+    ["instructors/popular"],
+    async () => {
+      const res = await axiosSecure.get("/instructors/popular");
+      return res.data;
+    }
+  );
 
   return (
-    <div className="bg-slate-50">
+    <div className="">
       <div className="max-w-screen-xl mx-auto pb-12 lg:px-0 px-5">
         <h1 className="text-4xl font-bold font-oswald text-center">
           Popular <span className="text-secondary">Instructors</span>
@@ -21,7 +24,7 @@ const PopularInstructors = () => {
           {instructors?.map((c) => (
             <div
               key={c?._id}
-              className={`bg-white rounded-lg shadow-lg p-5 ${
+              className={`bg-white rounded-lg shadow-lg p-5 border ${
                 c?.seats === 0 && "!bg-red-600 text-white"
               }`}
             >

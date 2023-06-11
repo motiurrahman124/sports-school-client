@@ -3,12 +3,12 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const OurClasses = () => {
   const [axiosSecure] = useAxiosSecure();
-  const { data: classList = [] } = useQuery(["class"], async () => {
-    const res = await axiosSecure.get("/class");
+  const { data: classList = [] } = useQuery(["class/popular"], async () => {
+    const res = await axiosSecure.get("/class/popular");
     return res.data;
   });
   return (
-    <div className="bg-slate-50">
+    <div className="">
       <div className="max-w-screen-xl mx-auto py-20">
         <h1 className="text-4xl font-bold font-oswald text-center">
           Popular <span className="text-secondary">Classes</span>
@@ -20,7 +20,7 @@ const OurClasses = () => {
           {classList?.map((c) => (
             <div
               key={c?._id}
-              className={`bg-white rounded-lg shadow-lg p-5 `}
+              className={`bg-white rounded-lg shadow-lg p-5 border `}
             >
               <div className="h-[250px]">
                 <img
