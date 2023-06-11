@@ -24,6 +24,7 @@ import Instructors from "./pages/Instructors";
 import PageNotFound from "./pages/PageNotFound";
 import MySelectedClass from "./pages/Dashboard/student/MySelectedClass";
 import Payment from "./pages/Dashboard/student/Payment/Payment";
+import PaymentHistory from "./pages/Dashboard/student/PaymentHistory";
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -78,6 +79,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Payment></Payment>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "payment-history",
+        element: (
+          <PrivateRoute>
+            <PaymentHistory></PaymentHistory>
           </PrivateRoute>
         ),
       },

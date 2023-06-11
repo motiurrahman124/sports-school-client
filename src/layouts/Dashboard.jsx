@@ -16,7 +16,9 @@ const DashboardLayout = () => {
   const navigate = useNavigate();
   const handleLogOut = () => {
     logOut()
-      .then(() => {navigate("/login");})
+      .then(() => {
+        navigate("/login");
+      })
       .catch((error) => console.log(error));
   };
 
@@ -94,8 +96,13 @@ const DashboardLayout = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/">
+                <NavLink to="/enrolled-class">
                   <SiGoogleclassroom /> My Enrolled Classes
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/payment-history">
+                  <SiGoogleclassroom /> Payment History
                 </NavLink>
               </li>
             </>
