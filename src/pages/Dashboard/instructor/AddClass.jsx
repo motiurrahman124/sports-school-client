@@ -44,6 +44,7 @@ const AddClass = () => {
             price: parseFloat(price),
             image: imgURL,
             status: "pending",
+            student: parseInt(0),
           };
           axiosSecure.post("/class", newClass).then((data) => {
             if (data.data.insertedId) {

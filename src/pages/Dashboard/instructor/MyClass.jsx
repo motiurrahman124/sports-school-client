@@ -62,7 +62,7 @@ const MyClass = () => {
                 <td>{c?.class_name}</td>
                 <td>${c?.price}</td>
                 <td>{c?.seats}</td>
-                <td>{c?.enrolled ? c?.enrolled : 0}</td>
+                <td>{c?.student ? c?.student : 0}</td>
                 <td
                   className={`${c?.status === "pending" && "text-secondary"} ${
                     c?.status === "approved" && "text-green-600"
@@ -103,7 +103,7 @@ const MyClass = () => {
         footer={null}
       >
         <div>
-          <p>{feedback? feedback:"No feedback was given yet"}</p>
+          <p>{feedback ? feedback : "No feedback was given yet"}</p>
         </div>
       </Modal>
     </div>

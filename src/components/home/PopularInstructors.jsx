@@ -44,7 +44,7 @@ const PopularInstructors = () => {
                     <img
                       src={c?.image}
                       alt=""
-                      className="md:h-[300px] h-[230px] rounded-lg w-full"
+                      className="md:h-[300px] h-[230px] rounded-lg w-full object-cover"
                     />
                   </motion.div>
                 </div>

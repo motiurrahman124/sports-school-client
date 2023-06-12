@@ -28,7 +28,7 @@ const OurClasses = () => {
           {classList?.map((c) => (
             <CardMotion key={c?._id}>
               <div
-                className={`bg-white rounded-lg shadow-lg p-5 border hover:border-secondary`}
+                className={`bg-white rounded-lg shadow-lg p-5 border hover:border-secondary h-full`}
               >
                 <div className="h-[250px] overflow-hidden">
                   <motion.div
@@ -42,7 +42,7 @@ const OurClasses = () => {
                     />
                   </motion.div>
                 </div>
-                <h1 className="text-2xl font-semibold font-oswald mt-4 mb-4 text-secondary">
+                <h1 className="text-2xl font-semibold font-oswald mt-4 mb-4 text-secondary ">
                   {c?.class_name}
                 </h1>
                 <div className="space-y-2">
@@ -57,6 +57,12 @@ const OurClasses = () => {
                       Available Seats :{" "}
                     </span>
                     {c?.seats}
+                  </p>
+                  <p className="text-lg">
+                    <span className="font-medium font-open_sans">
+                      Students :{" "}
+                    </span>
+                    {c?.student}
                   </p>
                   <p className="text-lg">
                     <span className="font-medium font-open_sans">Price : </span>

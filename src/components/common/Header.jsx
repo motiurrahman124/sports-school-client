@@ -131,7 +131,7 @@ const Header = () => {
                     ? user?.photoURL
                     : "https://i.ibb.co/bWMQVhF/no-image.png"
                 }
-                className="w-[50px] h-[50px] rounded-full ring ring-secondary ring-offset-base-100 ring-offset-2"
+                className="w-[50px] h-[50px] rounded-full ring ring-secondary ring-offset-base-100 ring-offset-2 object-cover"
                 title={user?.displayName}
               />
             </div>

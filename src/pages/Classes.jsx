@@ -35,9 +35,9 @@ const Classes = () => {
       const classItem = {
         item: item,
         email: user.email,
-        payment_status: "unpaid"
+        payment_status: "unpaid",
       };
-      fetch("http://localhost:5000/class/select", {
+      fetch("https://sports-school-server.vercel.app/class/select", {
         method: "POST",
         headers: {
           "content-type": "application/json",

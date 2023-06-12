@@ -1,13 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import usePayment from "../../../hooks/usePayment";
 
 const PaymentHistory = () => {
-  const [axiosSecure] = useAxiosSecure();
-  const { data: payments = [] } = useQuery(["payments"], async () => {
-    const res = await axiosSecure.get("/payments");
-    return res.data;
-  });
+  const [payments] = usePayment();
 
   return (
     <div>
@@ -40,7 +35,7 @@ const PaymentHistory = () => {
             {payments?.map((p, index) => (
               <tr key={p?._id}>
                 <th>{index + 1}</th>
-                <td>{p?.selectedClassId}</td>
+                <td>{p?.transactionId}</td>
                 <td>{p?.name}</td>
                 <td>{p?.email}</td>
                 <td>{p?.class_name}</td>

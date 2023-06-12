@@ -19,9 +19,9 @@ const LoginRegistration = ({ children, title }) => {
         name: loggedInUser.displayName,
         email: loggedInUser.email,
         image: loggedInUser.photoURL,
-        role: "student"
+        role: "student",
       };
-      fetch("http://localhost:5000/users", {
+      fetch("https://sports-school-server.vercel.app/users", {
         method: "POST",
         headers: {
           "content-type": "application/json",

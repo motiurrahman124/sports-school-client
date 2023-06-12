@@ -42,7 +42,7 @@ const ManageClass = () => {
   };
 
   const handleMakeApprove = (c) => {
-    fetch(`http://localhost:5000/class/approve/${c._id}`, {
+    fetch(`https://sports-school-server.vercel.app/class/approve/${c._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -60,7 +60,7 @@ const ManageClass = () => {
   };
 
   const handleMakeDeny = (d) => {
-    fetch(`http://localhost:5000/class/deny/${d._id}`, {
+    fetch(`https://sports-school-server.vercel.app/class/deny/${d._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -79,7 +79,7 @@ const ManageClass = () => {
 
   const onSubmit = (data) => {
     console.log("🚀 ~ file: ManageClass.jsx:77 ~ onSubmit ~ data:", data);
-    fetch(`http://localhost:5000/class/${data.id}`, {
+    fetch(`https://sports-school-server.vercel.app/class/${data.id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -165,7 +165,7 @@ const ManageClass = () => {
                     onClick={() => handleMakeApprove(c)}
                     className={`bg-green-600 px-3 py-2 text-white rounded-lg hover:text-green-600 hover:bg-white border border-green-600 ${
                       (c?.status === "approved" || c?.status === "denied") &&
-                      "!bg-gray-300 border-gray-300 hover:text-white"
+                      "!bg-gray-300 !border-gray-300 hover:text-white"
                     }`}
                     disabled={
                       c?.status === "denied" || c?.status === "approved"
@@ -177,7 +177,7 @@ const ManageClass = () => {
                     onClick={() => handleMakeDeny(c)}
                     className={`bg-red-600 px-3 py-2 text-white rounded-lg hover:text-red-600 border border-red-600 hover:bg-white ${
                       (c?.status === "approved" || c?.status === "denied") &&
-                      "!bg-gray-300 border-gray-300 hover:text-white"
+                      "!bg-gray-300 !border-gray-300 hover:text-white"
                     }`}
                     disabled={
                       c?.status === "denied" || c?.status === "approved"
@@ -201,7 +201,7 @@ const ManageClass = () => {
                       }}
                       className={`bg-primary px-3 py-2 text-white rounded-lg hover:text-primary border border-primary hover:bg-white ${
                         (c?.status === "approved" || c?.status === "pending") &&
-                        "!bg-gray-300 border-gray-300 hover:text-white"
+                        "!bg-gray-300 !border-gray-300 hover:text-white"
                       }`}
                       disabled={
                         c?.status === "pending" || c?.status === "approved"

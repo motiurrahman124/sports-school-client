@@ -9,65 +9,76 @@ import Swal from "sweetalert2";
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [error, setError] = useState("");
   const {
     register,
     formState: { errors },
     handleSubmit,
     watch,
-    reset
+    reset,
   } = useForm();
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    createUser(data.email, data.password).then((result) => {
-      const loggedUser = result.user;
-      console.log(loggedUser);
+    createUser(data.email, data.password)
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
 
-      updateUserProfile(data.name, data.photo)
-        .then(() => {
-          const saveUser = {
-            name: data.name,
-            email: data.email,
-            image: data.photo,
-            role: "student",
-          };
-          fetch("http://localhost:5000/users", {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(saveUser),
+        updateUserProfile(data.name, data.photo)
+          .then(() => {
+            const saveUser = {
+              name: data.name,
+              email: data.email,
+              image: data.photo,
+              role: "student",
+            };
+            fetch("https://sports-school-server.vercel.app/users", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(saveUser),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                if (data?.insertedId) {
+                  reset();
+                  Swal.fire({
+                    title: "Success!",
+                    text: "You have successfully signed up",
+                    icon: "success",
+                    confirmButtonText: "Cool",
+                  });
+                  navigate("/");
+                  window.location.reload();
+                }
+              });
+            console.log("success");
           })
-            .then((res) => res.json())
-            .then((data) => {
-              if (data.insertedId) {
-                reset();
-                Swal.fire({
-                  title: "Success!",
-                  text: "You have successfully signed up",
-                  icon: "success",
-                  confirmButtonText: "Cool",
-                });
-                navigate("/");
-                window.location.reload();
-              }
+          .catch(() => {
+            Swal.fire({
+              title: "Error!",
+              text: "Something went wrong!",
+              icon: "error",
+              confirmButtonText: "Try Again",
             });
-          console.log("success");
-        })
-        .catch(() => {
-          Swal.fire({
-            title: "Error!",
-            text: "Something went wrong!",
-            icon: "error",
-            confirmButtonText: "Try Again",
           });
-        });
-    });
+      })
+      .catch((error) => {
+        console.log(error);
+        setError(error.message);
+      });
   };
 
   return (
     <LoginRegistration title={"Registration Here"}>
+      {error?.length > 2 && (
+        <p className="my-5 bg-red-50 text-center py-4 rounded-lg text-red-500">
+          {error}
+        </p>
+      )}
       <form onSubmit={handleSubmit(onSubmit)}>
         <label className="block mb-2 text-white text-base font-medium">
           Name <span className="text-red-600">*</span>
