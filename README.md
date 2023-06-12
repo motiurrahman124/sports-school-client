@@ -1,3 +1,5 @@
+
+![Logo](https://i.ibb.co/r6t5b3R/images-removebg-preview-1.png)
 # Sports School
 
 Main features of this website are:
@@ -5,6 +7,7 @@ Main features of this website are:
 - Classes
 - Instructors
 - Role (Student, Instructor, Admin)
+- Payment Gateway (Stripe)
 
 ### Home: 
 #### Here you will see a hero section, popular classes(these class will be visible when admin approve the class, and sorted by number of students), popular instructors, and contact section.
