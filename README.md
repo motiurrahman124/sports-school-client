@@ -33,13 +33,14 @@ Main features of this website are:
 #### axios, firebase, antd, firebase, framer-motion, keen-slider, react-hook-form, react-icons, react-loader-spinner, react-router-dom, sweetalert2, daisyui, tailwindcss
 <br/>
 
-Login Credentials:
-- Admin 
-<br/>
-Email: admin-sports@gmail.com
-Password: Admin$503
-- Classes
-- Instructors
+Admin Credentials:
+- Email: admin-sports@gmail.com
+- Password: Admin$503
+
+Admin Credentials:
+- Email: admin-sports@gmail.com
+- Password: Admin$503
+
 <br/>
 
 
