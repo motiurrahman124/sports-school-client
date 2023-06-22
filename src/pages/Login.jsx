@@ -13,6 +13,8 @@ const Login = () => {
     handleSubmit,
   } = useForm();
   const [error] = useState("");
+  const [defaultEmail, setDefaultEmail] = useState(null);
+  const [defaultPassword, setDefaultPassword] = useState(null);
   const [show, setShow] = useState(false);
   const { signIn } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -20,6 +22,7 @@ const Login = () => {
   const from = location.state?.from?.pathname || "/";
 
   const onSubmit = (data) => {
+    console.log("🚀 ~ file: Login.jsx:25 ~ onSubmit ~ data:", data);
     signIn(data.email, data.password)
       .then((result) => {
         const user = result.user;
@@ -108,6 +111,46 @@ const Login = () => {
             Sign Up
           </Link>
         </p>
+        <div className="flex justify-center mt-5">
+          <button
+            onClick={() => {
+              setDefaultEmail("student-sports@gmail.com");
+              setDefaultPassword("Student$503");
+            }}
+            className="bg-secondary py-2 px-3 text-base font-semibold text-white border border-primary rounded-l-lg hover:text-primary hover:bg-white transition-all duration-300 transform hover:-translate-y-1"
+          >
+            Student
+          </button>
+          <button
+            onClick={() => {
+              setDefaultEmail("instructor-sports@gmail.com");
+              setDefaultPassword("Instructor$503");
+            }}
+            className="bg-secondary py-2 px-3 text-base font-semibold text-white border border-primary hover:text-primary hover:bg-white transition-all duration-300 transform hover:-translate-y-1"
+          >
+            Instructor
+          </button>
+          <button
+            onClick={() => {
+              setDefaultEmail("admin-sports@gmail.com");
+              setDefaultPassword("Admin$503");
+            }}
+            className="bg-secondary py-2 px-3 text-base font-semibold text-white border border-primary rounded-r-lg hover:text-primary hover:bg-white transition-all duration-300 transform hover:-translate-y-1"
+          >
+            Admin
+          </button>
+        </div>
+        {defaultEmail && (
+          <div className="mt-3 text-center text-white">
+            <p>
+              <span className="text-secondary">Email:</span> {defaultEmail}
+            </p>
+            <p>
+              <span className="text-secondary">Password:</span>{" "}
+              {defaultPassword}
+            </p>
+          </div>
+        )}
       </div>
     </LoginRegistration>
   );
