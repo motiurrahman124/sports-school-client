@@ -35,8 +35,8 @@ Main features of this website are:
 
 Login Credentials:
 - Admin 
-Email: admin-sports@gmail.com
-Password: Admin$503
+#### Email: admin-sports@gmail.com
+#### Password: Admin$503
 - Classes
 - Instructors
 <br/>
